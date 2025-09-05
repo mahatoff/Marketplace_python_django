@@ -190,7 +190,7 @@
                         <div class="col">
                             <h4><b>Корзина</b></h4>
                         </div>
-                        <div class="col align-self-center text-right text-muted">{{ order.get_total_products }} items
+                        <div class="col align-self-center text-right text-muted">{{ order.get_total_products }} товары
                         </div>
                     </div>
                 </div>
@@ -211,7 +211,7 @@
                                     class="border">{{ item.quantity }}</a><a href="" class="update-item h5"
                                                                              data-product="{{ item.product.id }}"
                                                                              data-action="add">+</a></div>
-                            <div class="col">$ {{ item.get_total_price|floatformat:2 }}<a
+                            <div class="col">{{ item.get_total_price|floatformat:2 }} ₸<a
                                     class="update-item close mx-4 h5" href="" data-product="{{ item.product.id }}"
                                     data-action="delete">&#10005;</a></div>
                         </div>
@@ -227,17 +227,17 @@
                 </div>
                 <hr>
                 <div class="row">
-                    <div class="col" style="padding-left:0;">{{ order.get_total_products }} ITEMS</div>
-                    <div class="col text-right">$ {{ order.get_total_price|floatformat:2 }}</div>
+                    <div class="col" style="padding-left:0;">{{ order.get_total_products }} ТОВАРЫ</div>
+                    <div class="col text-right">{{ order.get_total_price|floatformat:2 }} ₸</div>
                 </div>
                 <form method="POST">
                     <p>ДОСТАВКА</p>
                     <select name="delivery">
                         {% for item in delivery %}
-                            <option class="text-muted">{{ item.name }}- ${{ item.price }}</option>
+                            <option class="text-muted">{{ item.name }}- {{ item.price }} ₸</option>
                         {% endfor %}
                     </select>
-                    <p>ДАЙТЕ КОД</p> <input type="text" id="code" placeholder="Введите свой код" name="code">
+                    <p>Промокод</p> <input type="text" id="code" placeholder="Введите свой промокод" name="code">
                     {% if messages %}
                         {% for msg in messages %}
                             {% if msg.tags == 'info' %}
@@ -247,17 +247,17 @@
                         {% endfor %}
                     {% endif %}
 
-                {% if order.coupons %}<h7 class="text-success">discount: -${{ order.coupons.discount }}</h7>{% endif %}
+                {% if order.coupons %}<h7 class="text-success">Скидка: - {{ order.coupons.discount }} т</h7>{% endif %}
 
-                    <button type="submit" class="btn btn-block btn-info">Проверять</button>
+                    <button type="submit" class="btn btn-block btn-info">Проверять купон</button>
                     {% csrf_token %}
                 </form>
                 <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
                     <div class="col">ИТОГОВАЯ ЦЕНА</div>
-                    <div class="col text-right">$ {{ order.get_last_total_price|floatformat:2 }}</div>
+                    <div class="col text-right">{{ order.get_last_total_price|floatformat:2 }} ₸</div>
                 </div>
                 <a href="{% if order_items_count == 0 %}{% url 'blog:cart' %} {% else %}{% url 'blog:checkout' %}{% endif %}">
-                    <button id="btn">ПРОВЕРКА</button>
+                    <button id="btn">Перейти к оплате</button>
                 </a>
                 {% if messages %}
                     {% for message in messages %}

@@ -259,7 +259,7 @@
                                             <th scope="row">{% define counter|add:1 as counter %}{{ counter }}</th>
                                             <td>{{ order.transaction_id }}</td>
                                             <td>{{ order.date_orderd }}</td>
-                                            <td>${{ order.get_total_price|floatformat }}</td>
+                                            <td>{{ order.get_total_price|floatformat }} ₸</td>
                                         </tr>
                                             {% empty %}
                                             <td>Нет заказов</td>

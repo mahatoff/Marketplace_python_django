@@ -16,7 +16,7 @@
                 <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0"
                                            src="{{ product.image.url }}" alt="..."/></div>
                 <div class="col-md-6">
-                    <div class="small mb-1">SKU: BST-49</div>
+                    <!-- <div class="small mb-1">SKU: BST-49</div> -->
                     <h1 class="display-5 fw-bolder">{{ product.title }}</h1>
                     <div class="fs-5 mb-5">
                         <!-- Product price-->
@@ -43,7 +43,7 @@
                         </a>
                     </div>
                 {% if product.tags.all %}
-                    <p class="tags my-4">Tags: {% for tag in product.tags.all %}
+                    <p class="tags my-4">Теги: {% for tag in product.tags.all %}
                         <a href="{% url "blog:products_by_tag" tag.slug %}" style="text-decoration: None">
                             {{ tag.name }}
                         </a>
@@ -84,10 +84,10 @@
                                     <!-- Product price-->
                                     {% if product.offPrice %}
 
-                                        <span class="text-muted text-decoration-line-through">${{ product.price }}</span>
-                                        ${{ product.offPrice }}
+                                        <span class="text-muted text-decoration-line-through">{{ product.price }} ₸</span>
+                                        {{ product.offPrice }} ₸
                                     {% else %}
-                                        ${{ product.price }}
+                                        {{ product.price }} ₸
 
                                     {% endif %}
                                 </div>

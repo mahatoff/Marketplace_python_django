@@ -35,10 +35,10 @@
                                     <!-- Product price-->
                                     {% if product.offPrice %}
 
-                                        <span class="text-muted text-decoration-line-through">${{ product.price }}</span>
-                                        ${{ product.offPrice }}
+                                        <span class="text-muted text-decoration-line-through">{{ product.price }} ₸ </span>
+                                        {{ product.offPrice }} ₸
                                     {% else %}
-                                        ${{ product.price }}
+                                        {{ product.price }} ₸
 
                                     {% endif %}
                                 </div>
@@ -46,12 +46,12 @@
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                 <div class="text-center"><a class="btn btn-outline-dark mt-auto"
-                                                            href="{{ product.get_absolute_url }}">Параметры просмотра</a>
+                                                            href="{{ product.get_absolute_url }}">Подробнее</a>
                                 </div>
 
                                 <div class="text-center px-5 my-2 inline-block"><a
                                         class="btn btn-outline-info mt-auto update-item"
-                                        data-product="{{ product.id }}" data-action="add" {% if not request.user.authentication %}href="{% url 'blog:login' %}" {% endif %}>Add Cart</a>
+                                        data-product="{{ product.id }}" data-action="add" {% if not request.user.authentication %}href="{% url 'blog:login' %}" {% endif %}>В корзину</a>
                                 </div>
                             </div>
                         </div>
