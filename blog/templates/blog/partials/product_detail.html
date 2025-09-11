@@ -22,10 +22,10 @@
                         <!-- Product price-->
                         {% if product.offPrice %}
 
-                            <span class="text-muted text-decoration-line-through">${{ product.price }}</span>
-                            ${{ product.offPrice }}
+                            <span class="text-muted text-decoration-line-through">{{ product.price }}₸</span>
+                            {{ product.offPrice }} ₸
                         {% else %}
-                            ${{ product.price }}
+                            {{ product.price }} ₸
 
                         {% endif %}
                     </div>
